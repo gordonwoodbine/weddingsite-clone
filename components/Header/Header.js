@@ -25,8 +25,6 @@ const Header = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
 
-  console.log('router', router);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -106,7 +104,7 @@ const Header = (props) => {
       </AppBar>
       <Box component='nav'>
         <Drawer
-          container={container}
+          // container={container}
           variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
