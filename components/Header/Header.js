@@ -12,6 +12,7 @@ import {
   Toolbar,
   IconButton,
   Drawer,
+  Container,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
@@ -63,8 +64,13 @@ const Header = (props) => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar component='nav'>
-        <Toolbar>
+      <AppBar
+        position='static'
+        component='nav'
+        elevation={0}
+        sx={{ backgroundColor: 'white', borderBottom: '1px solid #333' }}
+      >
+        <Toolbar disableGutters>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -87,7 +93,7 @@ const Header = (props) => {
                 key={route.id}
                 onClick={() => router.push(route.path)}
                 sx={{
-                  color: '#fff',
+                  color: '#333',
                   textDecoration:
                     router.pathname === route.path ? 'underline' : 'none',
                 }}
