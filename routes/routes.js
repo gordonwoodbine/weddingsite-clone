@@ -15,8 +15,13 @@ export const routes = [
     name: 'Timeline',
   },
   {
+    id: 'accomodation',
+    path: '/accomodation',
+    name: 'Accomodation'
+  },
+  {
     id: 'faq',
     path: '/faq',
     name: 'FAQ',
-  },
+  }
 ];
