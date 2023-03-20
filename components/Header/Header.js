@@ -66,7 +66,7 @@ const Header = (props) => {
         position='static'
         component='nav'
         elevation={0}
-        sx={{ backgroundColor: 'white', borderBottom: '1px solid #333' }}
+        sx={{ backgroundColor: 'white', borderBottom: '1px solid #333', alignItems: { xs: 'left', sm: 'center' } }}
       >
         <Toolbar disableGutters>
           <IconButton
@@ -78,16 +78,11 @@ const Header = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant='h6'
-            component='div'
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Wedding, Innit?
-          </Typography>
+
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {routes.map((route) => (
               <Button
+                startIcon={route.icon}
                 key={route.id}
                 onClick={() => router.push(route.path)}
                 sx={{
