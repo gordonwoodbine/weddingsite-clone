@@ -6,51 +6,43 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import FastfoodIcon from '@mui/icons-material/Fastfood'
+import FastfoodIcon from '@mui/icons-material/Fastfood';
+
+const events = [
+  {
+    time: '9:30 am',
+    event: 'Eat',
+  },
+  {
+    time: '10.00 am',
+    event: 'Code',
+  },
+  {
+    time: '11.00 am',
+    event: 'Sleep',
+  },
+  {
+    time: '12:00 pm',
+    event: 'Repeat',
+    icon: <FastfoodIcon />,
+  },
+];
 
 const TimelineStructure = () => {
   return (
-    <Timeline position="alternate">
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          09:30 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          10:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          12:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          9:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot>  <FastfoodIcon /> </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
-      </TimelineItem>
+    <Timeline position='alternate'>
+      {events.map((e, i) => (
+        <TimelineItem key={i}>
+          <TimelineOppositeContent color='text.secondary'>
+            {e.time}
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            {e.icon ? <TimelineDot>{e.icon}</TimelineDot> : <TimelineDot />}
+            {i !== events.length - 1 ? <TimelineConnector /> : null}
+          </TimelineSeparator>
+          <TimelineContent>{e.event}</TimelineContent>
+        </TimelineItem>
+      ))}
     </Timeline>
   );
 };
