@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fdb700',
+      main: '#65081F',
     },
   },
 });
