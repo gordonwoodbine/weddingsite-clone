@@ -31,9 +31,6 @@ const Header = (props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant='h6' sx={{ my: 2 }}>
-        Wedding, Innit?
-      </Typography>
       <Divider />
       <List>
         {routes.map((route) => (
@@ -78,7 +75,6 @@ const Header = (props) => {
           >
             <MenuIcon />
           </IconButton>
-
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {routes.map((route) => (
               <Button
@@ -99,7 +95,7 @@ const Header = (props) => {
       </AppBar>
       <Box component='nav'>
         <Drawer
-          // container={container}
+          //  container={container}
           variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}

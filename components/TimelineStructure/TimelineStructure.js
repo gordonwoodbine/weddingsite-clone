@@ -16,8 +16,8 @@ const TimelineStructure = () => {
           09:30 am
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
+          <TimelineDot color="primary"> </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: 'primary.main' }} />
         </TimelineSeparator>
         <TimelineContent>Eat</TimelineContent>
       </TimelineItem>
@@ -26,8 +26,8 @@ const TimelineStructure = () => {
           10:00 am
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
+          <TimelineDot color="primary"> </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: 'primary.main' }} />
         </TimelineSeparator>
         <TimelineContent>Code</TimelineContent>
       </TimelineItem>
@@ -36,8 +36,9 @@ const TimelineStructure = () => {
           12:00 am
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
+          <TimelineDot color="primary">
+            <FastfoodIcon /> </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: 'primary.main' }} />
         </TimelineSeparator>
         <TimelineContent>Sleep</TimelineContent>
       </TimelineItem>
@@ -46,8 +47,8 @@ const TimelineStructure = () => {
           9:00 am
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot>  <FastfoodIcon /> </TimelineDot>
-          <TimelineConnector />
+          <TimelineDot color="primary"> <FastfoodIcon /> </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: 'primary.main' }} />
         </TimelineSeparator>
         <TimelineContent>Repeat</TimelineContent>
       </TimelineItem>

@@ -18,8 +18,10 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.12",
+    "@rumess/react-flip-countdown": "^1.2.6",
     "next": "^13.2.4",
     "react": "^18.2.0",
+    "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0"
   }
 }
