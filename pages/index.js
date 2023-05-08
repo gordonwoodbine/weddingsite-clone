@@ -13,7 +13,7 @@ const Home = () => {
         hourTitle=' '
         minuteTitle=' '
         secondTitle=' '
-        endAt={'2024-06-29 00:00:58'} // Date/Time
+        endAt={'2024-06-29 00:00:00'} // Date/Time
       />
     </div>
 
