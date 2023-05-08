@@ -63,7 +63,7 @@ const Header = (props) => {
         position='static'
         component='nav'
         elevation={0}
-        sx={{ backgroundColor: 'white', borderBottom: '1px solid #333', alignItems: { xs: 'left', sm: 'center' } }}
+        sx={{ backgroundColor: "background.primary", borderBottom: '1px solid #592828', alignItems: { xs: 'left', sm: 'center' } }}
       >
         <Toolbar disableGutters>
           <IconButton
@@ -71,7 +71,7 @@ const Header = (props) => {
             aria-label='open drawer'
             edge='start'
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ color: 'primary.main', mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -82,7 +82,7 @@ const Header = (props) => {
                 key={route.id}
                 onClick={() => router.push(route.path)}
                 sx={{
-                  color: '#333',
+                  color: 'primary.main',
                   textDecoration:
                     router.pathname === route.path ? 'underline' : 'none',
                 }}
