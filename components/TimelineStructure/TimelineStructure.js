@@ -38,7 +38,7 @@ const TimelineStructure = () => {
             {e.time}
           </TimelineOppositeContent>
           <TimelineSeparator>
-            {e.icon ? <TimelineDot color="primary">{e.icon}</TimelineDot> : <TimelineDot color="primary" />}
+            {e.icon ? <TimelineDot color="primary" variant="outlined" >{e.icon}</TimelineDot> : <TimelineDot color="primary" />}
             {i !== events.length - 1 ? <TimelineConnector sx={{ bgcolor: 'primary.main' }} /> : null}
           </TimelineSeparator>
           <TimelineContent>{e.event}</TimelineContent>
