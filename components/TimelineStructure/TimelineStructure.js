@@ -28,6 +28,7 @@ const events = [
   },
 ];
 
+
 const TimelineStructure = () => {
   return (
     <Timeline position='alternate'>
@@ -37,8 +38,8 @@ const TimelineStructure = () => {
             {e.time}
           </TimelineOppositeContent>
           <TimelineSeparator>
-            {e.icon ? <TimelineDot>{e.icon}</TimelineDot> : <TimelineDot />}
-            {i !== events.length - 1 ? <TimelineConnector /> : null}
+            {e.icon ? <TimelineDot color="primary">{e.icon}</TimelineDot> : <TimelineDot color="primary" />}
+            {i !== events.length - 1 ? <TimelineConnector sx={{ bgcolor: 'primary.main' }} /> : null}
           </TimelineSeparator>
           <TimelineContent>{e.event}</TimelineContent>
         </TimelineItem>

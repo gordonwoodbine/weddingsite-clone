@@ -4,10 +4,11 @@ import Layout from '../components/Layout';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#65081F',
+      main: '#8C4646',
     },
   },
 });
+
 
 const App = ({ Component, pageProps }) => {
   return (
