@@ -32,7 +32,7 @@ export const routes = [
   {
     id: 'faq',
     path: '/faq',
-    name: 'FAQ',
+    name: 'FAQs',
     icon: <HelpIcon />
 
   },
