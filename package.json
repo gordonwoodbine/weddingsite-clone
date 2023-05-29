@@ -20,6 +20,7 @@
     "@mui/material": "^5.11.12",
     "@rumess/react-flip-countdown": "^1.2.6",
     "next": "^13.2.4",
+    "next-auth": "^4.22.1",
     "react": "^18.2.0",
     "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0"

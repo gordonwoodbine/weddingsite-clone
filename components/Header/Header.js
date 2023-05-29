@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import {
   Typography,
   Box,
@@ -15,12 +16,15 @@ import {
   Container,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import AdminIcon from '@mui/icons-material/AdminPanelSettings';
 import { useRouter } from 'next/router';
 import { routes } from '../../routes/routes';
 
 const drawerWidth = 240;
 
 const Header = (props) => {
+  const { data: session, status } = useSession();
+  console.log('status', status);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
@@ -63,7 +67,11 @@ const Header = (props) => {
         position='static'
         component='nav'
         elevation={0}
-        sx={{ backgroundColor: 'white', borderBottom: '1px solid #333', alignItems: { xs: 'left', sm: 'center' } }}
+        sx={{
+          backgroundColor: 'white',
+          borderBottom: '1px solid #333',
+          alignItems: { xs: 'left', sm: 'center' },
+        }}
       >
         <Toolbar disableGutters>
           <IconButton
@@ -90,6 +98,19 @@ const Header = (props) => {
                 {route.name}
               </Button>
             ))}
+            {session && (
+              <Button
+                startIcon={<AdminIcon />}
+                onClick={() => router.push('/admin')}
+                sx={{
+                  color: '#333',
+                  textDecoration:
+                    router.pathname === '/admin' ? 'underline' : 'none',
+                }}
+              >
+                Admin
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
