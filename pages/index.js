@@ -1,8 +1,15 @@
 import FlipCountdown from '@rumess/react-flip-countdown';
-
 const Home = () => {
   return (
-    <div>
+    <div style={{
+      backgroundImage: `url(/rocco1.jpg)`,
+      height: '100vh',
+      width: '100%',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+    }}>
+
+
       <h1>Home Page</h1>
       <FlipCountdown
         size='medium'
