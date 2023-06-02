@@ -1,22 +1,35 @@
+import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import Layout from '../components/Layout';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fdb700',
+      main: '#8C4646',
     },
+    secondary: {
+      main: '#D9B8B8',
+    },
+    text: {
+      primary: '#592828',
+      secondary: '#bf7b75'
+    },
+    background: {
+      primary: '#FDFDFD'
+    }
   },
 });
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </SessionProvider>
   );
 };
 
