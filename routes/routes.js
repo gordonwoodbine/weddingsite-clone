@@ -40,7 +40,8 @@ export const routes = [
   {
     id: 'faq',
     path: '/faq',
-    name: 'FAQ',
-    icon: <HelpIcon />,
+    name: 'FAQs',
+    icon: <HelpIcon />
+
   },
 ];

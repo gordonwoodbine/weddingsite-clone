@@ -7,6 +7,16 @@ const theme = createTheme({
     primary: {
       main: '#8C4646',
     },
+    secondary: {
+      main: '#D9B8B8',
+    },
+    text: {
+      primary: '#592828',
+      secondary: '#bf7b75'
+    },
+    background: {
+      primary: '#FDFDFD'
+    }
   },
 });
 
