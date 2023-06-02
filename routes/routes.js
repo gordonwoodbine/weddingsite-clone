@@ -3,31 +3,39 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import HelpIcon from '@mui/icons-material/Help';
 import HotelIcon from '@mui/icons-material/Hotel';
+import RsvpIcon from '@mui/icons-material/Rsvp';
+import ReplyIcon from '@mui/icons-material/Reply';
 
 export const routes = [
   {
     id: 'home',
     path: '/',
     name: 'Home',
-    icon: <HomeIcon />
+    icon: <HomeIcon />,
   },
   {
     id: 'location',
     path: '/location',
     name: 'Location',
-    icon: <LocationOnIcon />
+    icon: <LocationOnIcon />,
   },
   {
     id: 'timeline',
     path: '/timeline',
     name: 'Timeline',
-    icon: <TimelineIcon />
+    icon: <TimelineIcon />,
   },
   {
     id: 'accomodation',
     path: '/accomodation',
     name: 'Accomodation',
-    icon: <HotelIcon />
+    icon: <HotelIcon />,
+  },
+  {
+    id: 'rsvp',
+    path: '/rsvp',
+    name: 'RSVP',
+    icon: <ReplyIcon />,
   },
   {
     id: 'faq',
