@@ -6,25 +6,42 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import FastfoodIcon from '@mui/icons-material/Fastfood';
+import GroupsIcon from '@mui/icons-material/Groups';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import BedtimeIcon from '@mui/icons-material/Bedtime';
 
 const events = [
   {
-    time: '9:30 am',
-    event: 'Eat',
+    time: '12:30',
+    event: 'Guest Arrival',
+    icon: <GroupsIcon color="secondary" />,
   },
   {
-    time: '10.00 am',
-    event: 'Code',
+    time: '13:00',
+    event: 'Ceremony',
+    icon: <HistoryEduIcon color="secondary" />,
   },
   {
-    time: '11.00 am',
-    event: 'Sleep',
+    time: '14:00',
+    event: 'Photos and Drinks',
+    icon: <PhotoCameraIcon color="secondary" />,
   },
   {
-    time: '12:00 pm',
-    event: 'Repeat',
-    icon: <FastfoodIcon />,
+    time: '15:00',
+    event: 'Wedding Breakfast',
+    icon: <RestaurantIcon color="secondary" />,
+  },
+  {
+    time: '18:30',
+    event: 'Reception Guest Arrival',
+    icon: <GroupsIcon color="secondary" />,
+  },
+  {
+    time: '00:00',
+    event: 'End',
+    icon: <BedtimeIcon color="secondary" />,
   },
 ];
 
@@ -38,7 +55,7 @@ const TimelineStructure = () => {
             {e.time}
           </TimelineOppositeContent>
           <TimelineSeparator>
-            {e.icon ? <TimelineDot color="primary">{e.icon}</TimelineDot> : <TimelineDot color="primary" />}
+            {e.icon ? <TimelineDot color="primary" variant="outlined" >{e.icon}</TimelineDot> : <TimelineDot color="primary" />}
             {i !== events.length - 1 ? <TimelineConnector sx={{ bgcolor: 'primary.main' }} /> : null}
           </TimelineSeparator>
           <TimelineContent>{e.event}</TimelineContent>
