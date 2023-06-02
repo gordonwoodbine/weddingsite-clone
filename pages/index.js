@@ -1,4 +1,6 @@
 import FlipCountdown from '@rumess/react-flip-countdown';
+import { useSession } from 'next-auth/react';
+
 const Home = () => {
   return (
     <div style={{
@@ -23,8 +25,6 @@ const Home = () => {
         endAt={'2024-06-29 00:00:00'} // Date/Time
       />
     </div>
-
-
   );
 };
 
