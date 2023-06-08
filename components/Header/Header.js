@@ -16,13 +16,22 @@ const Header = (props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleClick = (route) => {
+    if (router.pathname === route.path) return;
+    router.push(route.path);
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar
         position='static'
         component='nav'
         elevation={0}
-        sx={{ backgroundColor: "background.primary", borderBottom: '1px solid #592828', alignItems: { xs: 'left', sm: 'center' } }}
+        sx={{
+          backgroundColor: 'background.primary',
+          borderBottom: '1px solid #592828',
+          alignItems: { xs: 'left', sm: 'center' },
+        }}
       >
         <Toolbar disableGutters>
           <IconButton
@@ -39,7 +48,7 @@ const Header = (props) => {
               <Button
                 startIcon={route.icon}
                 key={route.id}
-                onClick={() => router.push(route.path)}
+                onClick={() => handleClick(route)}
                 sx={{
                   color: 'primary.main',
                   textDecoration:
