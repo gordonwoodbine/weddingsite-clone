@@ -8,6 +8,7 @@ import {
   TextField,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { codeGenerator } from '../../utils/utils';
 
 const useStyles = makeStyles({
   formField: {
@@ -49,6 +50,14 @@ const Form = ({ formId, userData, newUser = true }) => {
     }
   };
 
+  const generateCode = () => {
+    const code = codeGenerator();
+    setFormData({
+      ...formData,
+      rsvpCode: code,
+    });
+  };
+
   const handleChange = ({ target }) => {
     const { type, name } = target;
     const val = type === 'checkbox' ? target.checked : target.value;
@@ -64,10 +73,6 @@ const Form = ({ formId, userData, newUser = true }) => {
     postData(formData);
   };
 
-  useEffect(() => {
-    console.log('formdata', formData);
-  }, [formData]);
-
   return (
     <Box mt={3} display='flex' flexDirection={'column'}>
       <TextField
@@ -78,14 +83,24 @@ const Form = ({ formId, userData, newUser = true }) => {
         onChange={handleChange}
         className={classes.formField}
       />
-      <TextField
-        variant='outlined'
-        label='RSVP Code'
-        name='rsvpCode'
-        value={formData.rsvpCode}
-        onChange={handleChange}
-        className={classes.formField}
-      />
+      <Box display='flex' alignItems={'stretch'} className={classes.formField}>
+        <TextField
+          variant='outlined'
+          label='RSVP Code'
+          name='rsvpCode'
+          fullWidth
+          value={formData.rsvpCode}
+          onChange={handleChange}
+          sx={{ mr: 2 }}
+        />
+        <Button
+          variant='contained'
+          sx={{ whiteSpace: 'nowrap' }}
+          onClick={generateCode}
+        >
+          Generate Code
+        </Button>
+      </Box>
       <FormControlLabel
         control={
           <Checkbox
