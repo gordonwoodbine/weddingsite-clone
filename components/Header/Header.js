@@ -17,7 +17,7 @@ const Header = (props) => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', position: 'sticky', 'z-index': 1, top: 0 }}>
       <AppBar
         position='static'
         component='nav'
