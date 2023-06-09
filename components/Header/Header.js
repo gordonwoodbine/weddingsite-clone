@@ -29,7 +29,7 @@ const Header = (props) => {
         elevation={0}
         sx={{
           backgroundColor: 'background.primary',
-          borderBottom: '1px solid #592828',
+          borderBottom: '1px solid #8C4646',
           alignItems: { xs: 'left', sm: 'center' },
         }}
       >
