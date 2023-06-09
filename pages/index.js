@@ -35,10 +35,11 @@ const Home = () => {
 
 
 
-    <div id="rsvp" style={{minHeight: '100vh'}}> I love HTML </div>
-    <div id="accomodation" style={{minHeight: '100vh'}}> I love CSS </div>
+    <div id="rsvp" style={{ 'padding-top': '60px', minHeight: '100vh'}}> I love HTML </div>
+    <div id="accomodation" style={{'padding-top': '60px', minHeight: '100vh'}}> I love CSS </div>
     <div id="timeline" style={{minHeight: '100vh'}} > <Timeline/></div>
      <Section sectionId="location"/>
+
 
     </>
   );
