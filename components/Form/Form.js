@@ -24,6 +24,7 @@ const Form = ({ formId, userData, newUser = true }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: userData.name,
+    inviteType: userData.inviteType,
     rsvpCode: userData.rsvpCode,
     isAttending: userData.isAttending,
     dietryReqs: userData.dietryReqs,
@@ -80,6 +81,14 @@ const Form = ({ formId, userData, newUser = true }) => {
         label='Name'
         name='name'
         value={formData.name}
+        onChange={handleChange}
+        className={classes.formField}
+      />
+      <TextField
+        variant='outlined'
+        label='Invite Type'
+        name='inviteType'
+        value={formData.inviteType}
         onChange={handleChange}
         className={classes.formField}
       />
