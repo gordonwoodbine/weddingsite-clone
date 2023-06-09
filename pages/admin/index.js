@@ -17,6 +17,11 @@ const Admin = ({ guests }) => {
       width: 200,
     },
     {
+      field: 'inviteType',
+      headerName: 'Invite Type',
+      width: 200,
+    },
+    {
       field: 'rsvpCode',
       headerName: 'RSVP Code',
     },
