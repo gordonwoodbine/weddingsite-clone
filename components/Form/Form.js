@@ -133,6 +133,14 @@ const Form = ({ formId, userData, newUser = true }) => {
       />
       <Box display='flex' justifyContent={'flex-end'}>
         <Button
+          sx={{ mr: 2 }}
+          variant='contained'
+          color='secondary'
+          onClick={() => router.back()}
+        >
+          Cancel
+        </Button>
+        <Button
           variant='contained'
           onClick={handleSubmit}
           disabled={isSubmitting}

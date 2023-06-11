@@ -3,15 +3,15 @@ import { useSession } from 'next-auth/react';
 
 const Home = () => {
   return (
-    <div style={{
-      backgroundImage: `url(/rocco1.jpg)`,
-      height: '100vh',
-      width: '100%',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-    }}>
-
-
+    <div
+    // style={{
+    //   backgroundImage: `url(/rocco1.jpg)`,
+    //   height: '100vh',
+    //   width: '100%',
+    //   backgroundRepeat: 'no-repeat',
+    //   backgroundSize: 'cover',
+    // }}
+    >
       <h1>Home Page</h1>
       <FlipCountdown
         size='medium'
