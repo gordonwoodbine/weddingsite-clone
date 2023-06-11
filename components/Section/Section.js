@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Section = ({ sectionId}) => {
+const Section = ({ sectionId, children }) => {
   const classes = useStyles();
 
   // switch(sectionId) {
@@ -17,7 +17,7 @@ const Section = ({ sectionId}) => {
   // }
 
   return <div  className={classes.sectionId} id={sectionId}>
-    "I am Location"
+  {children}
   </div>
 }
 

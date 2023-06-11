@@ -47,8 +47,7 @@ const events = [
 
 
 const TimelineStructure = () => {
-  return (<div style={{'padding-top': '60px'}}>
-
+  return (
     <Timeline position='alternate'>
       {events.map((e, i) => (
         <TimelineItem key={i}>
@@ -63,7 +62,6 @@ const TimelineStructure = () => {
         </TimelineItem>
       ))}
     </Timeline>
-    </div>
   );
 };
 export default TimelineStructure;
