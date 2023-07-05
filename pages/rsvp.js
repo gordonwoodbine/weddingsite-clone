@@ -61,6 +61,7 @@ const RSVP = () => {
     setButtonDisabled(true);
     if (!value) {
       setError('RSVP Code is required');
+      setButtonDisabled(false);
       return;
     }
     validateCode(value);
