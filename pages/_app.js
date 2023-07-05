@@ -1,6 +1,7 @@
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import Layout from '../components/Layout';
+import '../styles/global.css';
 
 const theme = createTheme({
   palette: {
@@ -12,11 +13,11 @@ const theme = createTheme({
     },
     text: {
       primary: '#592828',
-      secondary: '#bf7b75'
+      secondary: '#bf7b75',
     },
     background: {
-      primary: '#FDFDFD'
-    }
+      primary: '#FDFDFD',
+    },
   },
 });
 
