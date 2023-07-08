@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
-import { Box, Button } from '@mui/material';
+import { Box, Button, IconButton } from '@mui/material';
 import dbConnect from '../../lib/dbConnect';
 import Guest from '../../lib/models/Guest';
 import DataTable from '../../components/DataTable';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const Admin = ({ guests }) => {
   const router = useRouter();
@@ -15,14 +16,32 @@ const Admin = ({ guests }) => {
       field: 'name',
       headerName: 'Guest Name',
       width: 200,
+      flex: 1,
     },
     {
-      field: 'rsvpCode',
-      headerName: 'RSVP Code',
+      field: 'inviteType',
+      headerName: 'Invite Type',
+      width: 200,
+      flex: 1,
+    },
+    {
+      field: 'hasRsvpd',
+      headerName: "Has RSVP'd?",
+      headerAlign: 'center',
+      align: 'center',
+      sortable: false,
+      renderCell: ({ row }) =>
+        row.hasRsvpd ? (
+          <CheckCircleIcon sx={{ color: 'green' }} />
+        ) : (
+          <CancelIcon sx={{ color: 'crimson' }} />
+        ),
+      flex: 1,
     },
     {
       field: 'isAttending',
       headerName: 'Is Attending?',
+      headerAlign: 'center',
       align: 'center',
       sortable: false,
       renderCell: ({ row }) =>
@@ -31,6 +50,19 @@ const Admin = ({ guests }) => {
         ) : (
           <CancelIcon sx={{ color: 'crimson' }} />
         ),
+      flex: 1,
+    },
+    {
+      field: 'tableActions',
+      headerName: 'Actions',
+      headerAlign: 'center',
+      align: 'center',
+      sortable: false,
+      renderCell: ({ row }) => (
+        <IconButton color='primary'>
+          <VisibilityIcon />
+        </IconButton>
+      ),
     },
   ];
 

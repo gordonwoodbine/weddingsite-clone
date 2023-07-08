@@ -7,6 +7,7 @@ import {
   FormControlLabel,
   TextField,
 } from '@mui/material';
+import { codeGenerator } from '../../utils/utils';
 
 const FormTextField = (props) => {
   return (
@@ -20,6 +21,7 @@ const Form = ({ formId, userData, newUser = true }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: userData.name,
+    inviteType: userData.inviteType,
     rsvpCode: userData.rsvpCode,
     isAttending: userData.isAttending,
     dietryReqs: userData.dietryReqs,
@@ -46,6 +48,14 @@ const Form = ({ formId, userData, newUser = true }) => {
     }
   };
 
+  const generateCode = () => {
+    const code = codeGenerator();
+    setFormData({
+      ...formData,
+      rsvpCode: code,
+    });
+  };
+
   const handleChange = ({ target }) => {
     const { type, name } = target;
     const val = type === 'checkbox' ? target.checked : target.value;
@@ -61,10 +71,6 @@ const Form = ({ formId, userData, newUser = true }) => {
     postData(formData);
   };
 
-  useEffect(() => {
-    console.log('formdata', formData);
-  }, [formData]);
-
   return (
     <Box mt={3} display='flex' flexDirection={'column'}>
       <FormTextField
@@ -79,6 +85,24 @@ const Form = ({ formId, userData, newUser = true }) => {
         value={formData.rsvpCode}
         onChange={handleChange}
       />
+      <Box display='flex' alignItems={'stretch'} className={classes.formField}>
+        <TextField
+          variant='outlined'
+          label='RSVP Code'
+          name='rsvpCode'
+          fullWidth
+          value={formData.rsvpCode}
+          onChange={handleChange}
+          sx={{ mr: 2 }}
+        />
+        <Button
+          variant='contained'
+          sx={{ whiteSpace: 'nowrap' }}
+          onClick={generateCode}
+        >
+          Generate Code
+        </Button>
+      </Box>
       <FormControlLabel
         control={
           <Checkbox
@@ -99,6 +123,14 @@ const Form = ({ formId, userData, newUser = true }) => {
         onChange={handleChange}
       />
       <Box display='flex' justifyContent={'flex-end'}>
+        <Button
+          sx={{ mr: 2 }}
+          variant='contained'
+          color='secondary'
+          onClick={() => router.back()}
+        >
+          Cancel
+        </Button>
         <Button
           variant='contained'
           onClick={handleSubmit}
