@@ -12,9 +12,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.10.6",
-    "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.12",
