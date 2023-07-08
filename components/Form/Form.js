@@ -79,13 +79,7 @@ const Form = ({ formId, userData, newUser = true }) => {
         value={formData.name}
         onChange={handleChange}
       />
-      <FormTextField
-        label='RSVP Code'
-        name='rsvpCode'
-        value={formData.rsvpCode}
-        onChange={handleChange}
-      />
-      <Box display='flex' alignItems={'stretch'} className={classes.formField}>
+      <Box display='flex' alignItems={'stretch'} sx={{ marginBottom: '1rem' }}>
         <TextField
           variant='outlined'
           label='RSVP Code'
