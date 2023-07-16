@@ -37,7 +37,7 @@ const Faq = () => {
   return (
     <div>
       {questions.map((e, i) => (
-        <Accordion expanded={expanded === e.question} onChange={handleChange(e.question)} sx={{ marginTop: 1 }}>
+        <Accordion key={e.id} expanded={expanded === e.question} onChange={handleChange(e.question)} sx={{ marginTop: 1 }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
