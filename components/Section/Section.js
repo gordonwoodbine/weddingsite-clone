@@ -1,24 +1,20 @@
-import { makeStyles } from "@mui/styles"
-import Location from "../../pages/location";
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   sectionId: {
-    minHeight: '100vh'
-  }
+    minHeight: '100vh',
+    paddingTop: '4rem',
+  },
 });
 
 const Section = ({ sectionId, children }) => {
   const classes = useStyles();
 
-  // switch(sectionId) {
-  //   case 'location':
-  //       return <div><Location/></div> 
-    
-  // }
-
-  return <div  className={classes.sectionId} id={sectionId}>
-  {children}
-  </div>
-}
+  return (
+    <div className={classes.sectionId} id={sectionId}>
+      {children}
+    </div>
+  );
+};
 
 export default Section;

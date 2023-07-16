@@ -41,7 +41,6 @@ export const routes = [
     id: 'faq',
     path: '#faq',
     name: 'FAQs',
-    icon: <HelpIcon />
-
+    icon: <HelpIcon />,
   },
 ];

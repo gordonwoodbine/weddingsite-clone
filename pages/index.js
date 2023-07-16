@@ -1,17 +1,13 @@
 import FlipCountdown from '@rumess/react-flip-countdown';
 import { useSession } from 'next-auth/react';
-import Section from '../components/Section/Section'
+import Section from '../components/Section/Section';
 import Timeline from './timeline';
-import Accomodation from './Accomodation';
 import RSVP from './rsvp';
-import Location from './location'
-import Faq from './faq'
 
 const Home = () => {
   return (
-    
     <>
-    <div id="home" style={{
+      {/* <div style={{
       backgroundImage: `url(/rocco1.jpg)`,
       height: '100vh',
       width: '100%',
@@ -34,23 +30,23 @@ const Home = () => {
       />
     </div>
 
-
-
-<div style={{'scrollBehaviour': 'smooth !important' }}> 
-{/* <div style={{'scroll-snap-type': 'y mandatory', 'overflow-y': 'scroll',minHeight: '100vh' }}>*/}
-
-    <div id="location" style={{'padding-top': '60px', minHeight: '100vh'}} > <Location/></div>
-    <div id="timeline" style={{'padding-top': '60px', minHeight: '100vh'}} > <Timeline/></div>
-    <div id="accomodation" style={{'padding-top': '60px', minHeight: '100vh'}}> <Accomodation/></div>
-    <div id="rsvp" style={{ 'scroll-snap-align': 'start', 'padding-top': '60px', minHeight: '100vh'}}> <RSVP/> </div>
-    <div id="faq" style={{ 'scroll-snap-align': 'start', 'padding-top': '60px', minHeight: '100vh'}}> <Faq/> </div>
-
-     {/* <Section sectionId="location">
-      <Location/>
-     </Section> */}
-     </div>
-
-
+      <Section sectionId='home'>
+        <div>I love HTML</div>
+      </Section>
+      {/* <div
+        id='accomodation'
+        style={{ 'padding-top': '60px', minHeight: '100vh' }}
+      >
+        {' '}
+        I love CSS{' '}
+      </div>
+      <div id='timeline' style={{ minHeight: '100vh' }}>
+        {' '}
+        <Timeline />
+      </div> */}
+      <Section sectionId='rsvp'>
+        <RSVP />
+      </Section>
     </>
   );
 };
