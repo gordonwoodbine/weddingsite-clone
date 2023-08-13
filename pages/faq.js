@@ -8,19 +8,49 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const questions = [
   {
     id: 1,
-    question: 'FAQ 1',
-    answer: 'FAQ 1 Answer',
+    question: 'Are there rooms available?',
+    answer: 'Rooms are available to book directly with the hotel, please call them on 01977 6204440 to reserve your room. Please disclose you are attending the wedding for a discounted rate.',
   },
   {
     id: 2,
-    question: 'FAQ 2',
-    answer: 'FAQ 2 Answer',
+    question: 'What time should I arrive?',
+    answer: 'Guests invited to join us for the full day should please arrive by the latest 13:00 ready for a prompt start to the cermemony at 13:30. See our timeline page for more details of the day. Evening guests are invitd to arrive from 19:00',
   },
   {
     id: 3,
-    question: 'FAQ 3',
-    answer: 'FAQ 3 Answer',
+    question: 'When should I RSVP?',
+    answer: 'Please RSVP using the RSVP code on your invite by ______. Any RSVPs received after this ate may nt be able to be accomodated. ',
   },
+  {
+    id: 4,
+    question: 'Where is the ceremony taking place?',
+    answer: 'The cermony is taking place at Wentbridge House Hotel. Please note that we have planned to hold the ceremony outside.',
+  },
+  {
+    id: 5,
+    question: 'Is there a dress code?',
+    answer: 'Guests are invited to dress up with us, please wear your best cocktail/formal attire.',
+  },
+  {
+    id: 6,
+    question: 'Do you have a gift list/registry?',
+    answer: 'Your attendance at our special day is all we ask. If you do wish to honour us witha  gift, a contribution to our honeymoon excursions would be kindly received.',
+  },
+  // {
+  //   id: 7,
+  //   question: '',
+  //   answer: '',
+  // },
+  // {
+  //   id: 8,
+  //   question: '',
+  //   answer: '',
+  // },
+  // {
+  //   id: 9,
+  //   question: '',
+  //   answer: '',
+  // },
 
 ];
 
