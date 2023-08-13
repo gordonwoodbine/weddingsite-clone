@@ -49,9 +49,17 @@ const Home = () => {
       
       <Section sectionId='home'>
 
-
-      <h1>Home Page</h1>
-      <FlipCountdown
+      <div style={{
+      backgroundImage: `url(/logo1.png)`,
+      height: '100vh',
+      width: '100%',
+      backgroundRepeat: 'no-repeat',
+     backgroundSize: 'auto',
+     backgroundPosition: 'center',
+     }}>
+   
+   <h1 style={{textAlign: 'center'}}>YOU'RE INVITED TO CELEBRATE THE SYKES WEDDING!</h1>
+   <FlipCountdown
         size='medium'
         theme='dark'
         yearTitle=' '
@@ -62,7 +70,7 @@ const Home = () => {
         secondTitle=' '
         endAt={'2024-06-29 00:00:00'} // Date/Time
       />
-
+ </div>
       </Section>
 
       <Section sectionId='location'>
