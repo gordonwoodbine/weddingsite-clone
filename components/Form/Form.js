@@ -7,17 +7,12 @@ import {
   FormControlLabel,
   TextField,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles({
-  formField: {
-    // marginTop: '1rem',
-    marginBottom: '1rem',
-  },
-});
+const FormField = (props) => (
+  <TextField variant='outlined' sx={{ marginBottom: '1rem' }} {...props} />
+);
 
 const Form = ({ formId, userData, newUser = true }) => {
-  const classes = useStyles();
   const router = useRouter();
   const contentType = 'application/json';
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,21 +65,17 @@ const Form = ({ formId, userData, newUser = true }) => {
 
   return (
     <Box mt={3} display='flex' flexDirection={'column'}>
-      <TextField
-        variant='outlined'
+      <FormField
         label='Name'
         name='name'
         value={formData.name}
         onChange={handleChange}
-        className={classes.formField}
       />
-      <TextField
-        variant='outlined'
+      <FormField
         label='RSVP Code'
         name='rsvpCode'
         value={formData.rsvpCode}
         onChange={handleChange}
-        className={classes.formField}
       />
       <FormControlLabel
         control={
@@ -95,15 +86,13 @@ const Form = ({ formId, userData, newUser = true }) => {
           />
         }
         label='Is Attending?'
-        className={classes.formField}
+        sx={{ marginBottom: '1rem' }}
       />
-      <TextField
-        variant='outlined'
+      <FormField
         multiline
         rows={4}
         label='Dietry Requirements'
         name='dietryReqs'
-        className={classes.formField}
         value={formData.dietryReqs}
         onChange={handleChange}
       />

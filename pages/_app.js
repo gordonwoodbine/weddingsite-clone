@@ -1,7 +1,11 @@
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { CacheProvider } from '@emotion/react';
 import Layout from '../components/Layout';
+import createEmotionCache from '../utils/createEmotionCache';
 import '../styles/global.css';
+
+const clientSideEmotionCache = createEmotionCache();
 
 const theme = createTheme({
   palette: {
@@ -21,16 +25,22 @@ const theme = createTheme({
   },
 });
 
-const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+const App = ({
+  Component,
+  emotionCache = clientSideEmotionCache,
+  pageProps: { session, ...pageProps },
+}) => {
   return (
-    <SessionProvider session={session}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </SessionProvider>
+    <CacheProvider value={emotionCache}>
+      <SessionProvider session={session}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </SessionProvider>
+    </CacheProvider>
   );
 };
 

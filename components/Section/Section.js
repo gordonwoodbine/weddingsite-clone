@@ -1,19 +1,15 @@
-import { makeStyles } from '@mui/styles';
-
-const useStyles = makeStyles({
-  sectionId: {
-    minHeight: '100vh',
-    paddingTop: '4rem',
-  },
-});
+import { Box } from '@mui/material';
 
 const Section = ({ sectionId, children }) => {
-  const classes = useStyles();
+  const style = {
+    minHeight: '100vh',
+    paddingTop: '4rem',
+  };
 
   return (
-    <div className={classes.sectionId} id={sectionId}>
+    <Box id={sectionId} sx={style}>
       {children}
-    </div>
+    </Box>
   );
 };
 

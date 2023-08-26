@@ -9,37 +9,37 @@ import ReplyIcon from '@mui/icons-material/Reply';
 export const routes = [
   {
     id: 'home',
-    path: '#home',
+    path: '/#home',
     name: 'Home',
     icon: <HomeIcon />,
   },
   {
     id: 'location',
-    path: '#location',
+    path: '/#location',
     name: 'Location',
     icon: <LocationOnIcon />,
   },
   {
     id: 'timeline',
-    path: '#timeline',
+    path: '/#timeline',
     name: 'Timeline',
     icon: <TimelineIcon />,
   },
   {
     id: 'accomodation',
-    path: '#accomodation',
+    path: '/#accomodation',
     name: 'Accomodation',
     icon: <HotelIcon />,
   },
   {
     id: 'rsvp',
-    path: '#rsvp',
+    path: '/#rsvp',
     name: 'RSVP',
     icon: <ReplyIcon />,
   },
   {
     id: 'faq',
-    path: '#faq',
+    path: '/#faq',
     name: 'FAQs',
     icon: <HelpIcon />,
   },
