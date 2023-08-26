@@ -17,6 +17,11 @@ const Header = (props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleClick = (route) => {
+    if (router.pathname === route.path) return;
+    router.push(route.path);
+  };
+
   return (
     <Box sx={{ display: 'flex', position: 'sticky', 'z-index': 1, top: 0 }}>
       <AppBar
