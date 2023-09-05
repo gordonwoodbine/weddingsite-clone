@@ -1,30 +1,18 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Form from '../../../../components/Form';
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import useSWR from 'swr';
+import { fetcher } from '../../../../utils/utils';
 
 const EditGuest = () => {
-  const [guest, setGuest] = useState(null);
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
 
-  useEffect(() => {
-    const getter = async () => {
-      const res = await fetch(`http://localhost:3000/api/guests/${id}`);
-      const { data } = await res.json();
-      setGuest(data);
-    };
-    setLoading(true);
-    getter();
-    setLoading(false);
-  }, [id]);
+  const { data, error, isLoading } = useSWR(`/api/guests/${id}`, fetcher);
 
-  return loading ? (
-    <CircularProgress />
-  ) : guest ? (
-    <Form formId={'edit-guest-form'} userData={guest} />
-  ) : null;
+  return (
+    <Box>{data ? <Form formId='edit-guest-form' userData={data} /> : null}</Box>
+  );
 };
 
 export default EditGuest;

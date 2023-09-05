@@ -1,9 +1,13 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Grid, IconButton, useTheme } from '@mui/material';
+import { useRouter } from 'next/router';
 
-export const getColumnData = (basePath) => {
+export const getColumnData = (basePath, deleteGuest) => {
+  const router = useRouter();
+  const theme = useTheme();
   const columns = [
     {
       field: 'name',
@@ -25,9 +29,9 @@ export const getColumnData = (basePath) => {
       sortable: false,
       renderCell: ({ row }) =>
         row.hasRsvpd ? (
-          <CheckCircleIcon sx={{ color: 'green' }} />
+          <CheckCircleIcon sx={{ color: '#5ce31e' }} />
         ) : (
-          <CancelIcon sx={{ color: 'crimson' }} />
+          <CancelIcon sx={{ color: theme.palette.error.main }} />
         ),
       flex: 1,
     },
@@ -39,9 +43,9 @@ export const getColumnData = (basePath) => {
       sortable: false,
       renderCell: ({ row }) =>
         row.isAttending ? (
-          <CheckCircleIcon sx={{ color: 'green' }} />
+          <CheckCircleIcon sx={{ color: '#5ce31e' }} />
         ) : (
-          <CancelIcon sx={{ color: 'crimson' }} />
+          <CancelIcon sx={{ color: theme.palette.error.main }} />
         ),
       flex: 1,
     },
@@ -52,12 +56,25 @@ export const getColumnData = (basePath) => {
       align: 'center',
       sortable: false,
       renderCell: ({ row }) => (
-        <IconButton
-          color='primary'
-          onClick={() => router.push(`${basePath}/admin/guests/edit/${row.id}`)}
-        >
-          <VisibilityIcon />
-        </IconButton>
+        <Grid container direction='row'>
+          <Grid item>
+            <IconButton
+              onClick={() =>
+                router.push(`${basePath}/admin/guests/edit/${row.id}`)
+              }
+            >
+              <VisibilityIcon />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton
+              sx={{ color: theme.palette.error.main }}
+              onClick={() => deleteGuest(row.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
       ),
     },
   ];

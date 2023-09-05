@@ -1,57 +1,53 @@
 import { useRouter } from 'next/router';
-import { Box, Button } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
+import useSWR, { useSWRConfig } from 'swr';
+import axios from 'axios';
+
 import DataTable from '../../components/DataTable';
 import { getColumnData } from './columnData';
-import { useState } from 'react';
+import { fetcher } from '../../utils/utils';
 
 const Admin = () => {
   const router = useRouter();
   const basePath = process.env.NEXT_PUBLIC_URL;
-  const [guests, setGuests] = useState(null);
+  const { mutate } = useSWRConfig();
 
-  const columns = getColumnData(basePath);
+  const { data, error, isLoading } = useSWR('api/guests', fetcher);
 
-  const g = fetch(`${basePath}/api/guests`)
-    .then((res) => res.json())
-    .then(({ data }) => {
-      const dataWithIds = data.map((el) => ({
-        ...el,
-        id: el._id,
-      }));
-      setGuests(dataWithIds);
-    });
+  const deleteGuest = (id) => {
+    axios
+      .delete(`/api/guests/${id}`)
+      .then((res) => {
+        mutate('api/guests');
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const columns = getColumnData(basePath, deleteGuest);
 
   return (
     <Box mt={3}>
-      <Box display={'flex'} justifyContent={'flex-end'}>
-        <Button
-          variant='contained'
-          onClick={() => router.push(`${basePath}/admin/addGuest/`)}
-        >
-          Add New Guest
-        </Button>
-      </Box>
-      {guests ? (
-        <Box mt={2}>
-          <DataTable rows={guests} columns={columns} />
-        </Box>
+      {data ? (
+        <>
+          <Box display={'flex'} justifyContent={'flex-end'}>
+            <Button
+              variant='contained'
+              onClick={() => router.push(`${basePath}/admin/addGuest/`)}
+            >
+              Add New Guest
+            </Button>
+          </Box>
+          <Box mt={2}>
+            <DataTable rows={data} columns={columns} />
+          </Box>
+        </>
+      ) : isLoading ? (
+        <CircularProgress />
+      ) : error ? (
+        <div>Error!</div>
       ) : null}
     </Box>
   );
 };
-
-// export async function getServerSideProps() {
-//   await dbConnect();
-
-//   const res = await Guest.find({});
-//   const guests = res.map((doc) => {
-//     const guest = doc.toObject();
-//     guest._id = guest._id.toString();
-//     guest.id = guest._id;
-//     return guest;
-//   });
-
-//   return { props: { guests } };
-// }
 
 export default Admin;

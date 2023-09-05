@@ -10,10 +10,7 @@ export default async function handler(req, res) {
     case 'GET':
       try {
         const guests = await Guest.find({});
-        res.status(200).json({
-          success: true,
-          data: guests,
-        });
+        res.status(200).json(guests);
       } catch (err) {
         res.status(400).json({
           success: false,

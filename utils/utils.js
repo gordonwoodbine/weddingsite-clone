@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const randomIntFromInterval = (min = 0, max = 10) => {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -12,3 +14,5 @@ export const codeGenerator = (len = 6) => {
   }
   return str;
 };
+
+export const fetcher = (...args) => axios.get(...args).then((res) => res.data);

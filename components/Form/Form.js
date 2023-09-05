@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Box,
@@ -6,6 +6,7 @@ import {
   Checkbox,
   FormControlLabel,
   TextField,
+  MenuItem,
 } from '@mui/material';
 import { codeGenerator } from '../../utils/utils';
 
@@ -41,7 +42,6 @@ const Form = ({ formId, userData, newUser = true }) => {
       router.push('/admin');
     } catch (err) {
       console.log('error', err);
-      setIsSubmitting(false);
     }
   };
 
@@ -66,10 +66,11 @@ const Form = ({ formId, userData, newUser = true }) => {
   const handleSubmit = () => {
     setIsSubmitting(true);
     postData(formData);
+    setIsSubmitting(false);
   };
 
   return (
-    <Box mt={3} display='flex' flexDirection={'column'}>
+    <Box mt={3} display='flex' flexDirection={'column'} id={formId}>
       <FormField
         label='Name'
         name='name'
@@ -77,11 +78,16 @@ const Form = ({ formId, userData, newUser = true }) => {
         onChange={handleChange}
       />
       <FormField
+        select
         label='Invite Type'
         name='inviteType'
         value={formData.inviteType}
         onChange={handleChange}
-      />
+        sx={{ marginBottom: '1rem' }}
+      >
+        <MenuItem value='allDay'>All Day</MenuItem>
+        <MenuItem value='evening'>Evening Only</MenuItem>
+      </FormField>
       <Box display='flex' alignItems={'stretch'}>
         <TextField
           variant='outlined'
