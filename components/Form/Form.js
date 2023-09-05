@@ -7,7 +7,6 @@ import {
   FormControlLabel,
   TextField,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { codeGenerator } from '../../utils/utils';
 
 const FormField = (props) => (
@@ -39,7 +38,6 @@ const Form = ({ formId, userData, newUser = true }) => {
       if (!res.ok) {
         throw new Error(res.status);
       }
-      console.log('hi');
       router.push('/admin');
     } catch (err) {
       console.log('error', err);
@@ -84,7 +82,7 @@ const Form = ({ formId, userData, newUser = true }) => {
         value={formData.inviteType}
         onChange={handleChange}
       />
-      <Box display='flex' alignItems={'stretch'} className={classes.formField}>
+      <Box display='flex' alignItems={'stretch'}>
         <TextField
           variant='outlined'
           label='RSVP Code'
@@ -105,7 +103,7 @@ const Form = ({ formId, userData, newUser = true }) => {
       <FormControlLabel
         control={
           <Checkbox
-            value={formData.isAttending}
+            checked={formData.isAttending}
             onChange={handleChange}
             name='isAttending'
           />

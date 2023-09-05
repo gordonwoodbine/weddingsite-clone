@@ -6,6 +6,7 @@ import Location from './location';
 import Accomodation from './accomodation';
 import RSVP from './rsvp';
 import Faq from './faq';
+
 const Home = () => {
   return (
     <>
@@ -23,7 +24,7 @@ const Home = () => {
           <h1 style={{ textAlign: 'center' }}>
             YOU'RE INVITED TO CELEBRATE THE SYKES WEDDING!
           </h1>
-          <FlipCountdown
+          {/* <FlipCountdown
             size='medium'
             theme='dark'
             yearTitle=' '
@@ -33,7 +34,7 @@ const Home = () => {
             minuteTitle=' '
             secondTitle=' '
             endAt={'2024-06-29 00:00:00'} // Date/Time
-          />
+          /> */}
         </div>
       </Section>
 

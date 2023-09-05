@@ -4,6 +4,9 @@ const Section = ({ sectionId, children }) => {
   const style = {
     minHeight: '100vh',
     paddingTop: '4rem',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   return (

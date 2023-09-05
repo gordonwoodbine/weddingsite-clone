@@ -1,70 +1,25 @@
 import { useRouter } from 'next/router';
-import { Box, Button, IconButton } from '@mui/material';
-import dbConnect from '../../lib/dbConnect';
-import Guest from '../../lib/models/Guest';
+import { Box, Button } from '@mui/material';
 import DataTable from '../../components/DataTable';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import { getColumnData } from './columnData';
+import { useState } from 'react';
 
-const Admin = ({ guests }) => {
+const Admin = () => {
   const router = useRouter();
-  const basePath = 'http://localhost:3000';
+  const basePath = process.env.NEXT_PUBLIC_URL;
+  const [guests, setGuests] = useState(null);
 
-  const columns = [
-    {
-      field: 'name',
-      headerName: 'Guest Name',
-      width: 200,
-      flex: 1,
-    },
-    {
-      field: 'inviteType',
-      headerName: 'Invite Type',
-      width: 200,
-      flex: 1,
-    },
-    {
-      field: 'hasRsvpd',
-      headerName: "Has RSVP'd?",
-      headerAlign: 'center',
-      align: 'center',
-      sortable: false,
-      renderCell: ({ row }) =>
-        row.hasRsvpd ? (
-          <CheckCircleIcon sx={{ color: 'green' }} />
-        ) : (
-          <CancelIcon sx={{ color: 'crimson' }} />
-        ),
-      flex: 1,
-    },
-    {
-      field: 'isAttending',
-      headerName: 'Is Attending?',
-      headerAlign: 'center',
-      align: 'center',
-      sortable: false,
-      renderCell: ({ row }) =>
-        row.isAttending ? (
-          <CheckCircleIcon sx={{ color: 'green' }} />
-        ) : (
-          <CancelIcon sx={{ color: 'crimson' }} />
-        ),
-      flex: 1,
-    },
-    {
-      field: 'tableActions',
-      headerName: 'Actions',
-      headerAlign: 'center',
-      align: 'center',
-      sortable: false,
-      renderCell: ({ row }) => (
-        <IconButton color='primary'>
-          <VisibilityIcon />
-        </IconButton>
-      ),
-    },
-  ];
+  const columns = getColumnData(basePath);
+
+  const g = fetch(`${basePath}/api/guests`)
+    .then((res) => res.json())
+    .then(({ data }) => {
+      const dataWithIds = data.map((el) => ({
+        ...el,
+        id: el._id,
+      }));
+      setGuests(dataWithIds);
+    });
 
   return (
     <Box mt={3}>
@@ -76,25 +31,27 @@ const Admin = ({ guests }) => {
           Add New Guest
         </Button>
       </Box>
-      <Box mt={2}>
-        <DataTable rows={guests} columns={columns} />
-      </Box>
+      {guests ? (
+        <Box mt={2}>
+          <DataTable rows={guests} columns={columns} />
+        </Box>
+      ) : null}
     </Box>
   );
 };
 
-export async function getServerSideProps() {
-  await dbConnect();
+// export async function getServerSideProps() {
+//   await dbConnect();
 
-  const res = await Guest.find({});
-  const guests = res.map((doc) => {
-    const guest = doc.toObject();
-    guest._id = guest._id.toString();
-    guest.id = guest._id;
-    return guest;
-  });
+//   const res = await Guest.find({});
+//   const guests = res.map((doc) => {
+//     const guest = doc.toObject();
+//     guest._id = guest._id.toString();
+//     guest.id = guest._id;
+//     return guest;
+//   });
 
-  return { props: { guests } };
-}
+//   return { props: { guests } };
+// }
 
 export default Admin;
