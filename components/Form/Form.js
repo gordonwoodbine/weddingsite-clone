@@ -14,9 +14,9 @@ const FormField = (props) => (
   <TextField variant='outlined' sx={{ marginBottom: '1rem' }} {...props} />
 );
 
-const Form = ({ formId, userData, newUser = true }) => {
+const Form = ({ formId, userData, newUser = true, apiCall, submitText }) => {
   const router = useRouter();
-  const contentType = 'application/json';
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: userData.name,
@@ -25,25 +25,6 @@ const Form = ({ formId, userData, newUser = true }) => {
     isAttending: userData.isAttending,
     dietryReqs: userData.dietryReqs,
   });
-
-  const postData = async (form) => {
-    try {
-      const res = await fetch('http://localhost:3000/api/guests', {
-        method: 'POST',
-        headers: {
-          Accept: contentType,
-          'Content-Type': contentType,
-        },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) {
-        throw new Error(res.status);
-      }
-      router.push('/admin');
-    } catch (err) {
-      console.log('error', err);
-    }
-  };
 
   const generateCode = () => {
     const code = codeGenerator();
@@ -65,7 +46,7 @@ const Form = ({ formId, userData, newUser = true }) => {
 
   const handleSubmit = () => {
     setIsSubmitting(true);
-    postData(formData);
+    apiCall(formData);
     setIsSubmitting(false);
   };
 
@@ -139,7 +120,7 @@ const Form = ({ formId, userData, newUser = true }) => {
           onClick={handleSubmit}
           disabled={isSubmitting}
         >
-          Add New Guest
+          {submitText}
         </Button>
       </Box>
     </Box>
