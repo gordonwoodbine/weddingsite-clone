@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, IconButton, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
 
-export const getColumnData = (basePath, deleteGuest) => {
+export const getColumnData = (basePath, deleteCallback) => {
   const router = useRouter();
   const theme = useTheme();
   const columns = [
@@ -69,7 +69,7 @@ export const getColumnData = (basePath, deleteGuest) => {
           <Grid item>
             <IconButton
               sx={{ color: theme.palette.error.main }}
-              onClick={() => deleteGuest(row.id)}
+              onClick={() => deleteCallback(row)}
             >
               <DeleteIcon />
             </IconButton>
