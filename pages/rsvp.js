@@ -41,6 +41,7 @@ const RSVP = () => {
   const handleResponse = (data) => {
     console.log('data', data);
     if (data.success) {
+      console.log('success!');
       setToken(data.token);
       setDialogProps({
         ...dialogProps,
@@ -89,7 +90,7 @@ const RSVP = () => {
           Submit
         </Button>
       </Box>
-      <Dialog props={dialogProps} />
+      <Dialog {...dialogProps} />
     </>
   );
 };

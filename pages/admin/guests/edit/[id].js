@@ -22,6 +22,7 @@ const EditGuest = () => {
   };
 
   const { data, error, isLoading } = useSWR(`/api/guests/${id}`, fetcher);
+  console.log('data', data);
 
   return (
     <Box>

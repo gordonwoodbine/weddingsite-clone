@@ -7,6 +7,10 @@ import {
   FormControlLabel,
   TextField,
   MenuItem,
+  FormGroup,
+  FormLabel,
+  Grid,
+  Paper,
 } from '@mui/material';
 import { codeGenerator } from '../../utils/utils';
 
@@ -22,8 +26,13 @@ const Form = ({ formId, userData, newUser = true, apiCall, submitText }) => {
     name: userData.name,
     inviteType: userData.inviteType,
     rsvpCode: userData.rsvpCode,
+    hasRsvpd: userData.hasRsvpd,
     isAttending: userData.isAttending,
     dietryReqs: userData.dietryReqs,
+    songRec: {
+      title: 'Bat Out of Hell',
+      artist: 'Meatloaf',
+    },
   });
 
   const generateCode = () => {
@@ -87,17 +96,49 @@ const Form = ({ formId, userData, newUser = true, apiCall, submitText }) => {
           Generate Code
         </Button>
       </Box>
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={formData.isAttending}
-            onChange={handleChange}
-            name='isAttending'
-          />
-        }
-        label='Is Attending?'
-        sx={{ marginBottom: '1rem' }}
-      />
+      <Box display='flex' sx={{ marginTop: '.5rem' }}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={formData.isAttending}
+              onChange={handleChange}
+              name='isAttending'
+            />
+          }
+          label='Is Attending?'
+          sx={{ marginBottom: '1rem' }}
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={formData.hasRsvpd}
+              onChange={handleChange}
+              name='hasRsvpd'
+            />
+          }
+          label="Has RSVP'd?"
+          sx={{ marginBottom: '1rem' }}
+        />
+      </Box>
+      <Paper elevation={3} sx={{ marginBottom: '1rem' }}>
+        <FormGroup
+          sx={{
+            padding: '1rem',
+            paddingBottom: 0,
+            borderRadius: '4px',
+          }}
+        >
+          <FormLabel sx={{ mb: 1.5 }}>Song Recommendation</FormLabel>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <FormField label='Artist' fullWidth />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormField label='Title' fullWidth />
+            </Grid>
+          </Grid>
+        </FormGroup>
+      </Paper>
       <FormField
         multiline
         rows={4}
