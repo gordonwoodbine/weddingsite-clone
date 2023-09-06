@@ -40,16 +40,32 @@ const RSVP = () => {
     }
   };
 
+  const parseData = (data) => ({
+    ...data,
+    isAttending: true,
+  });
+
   const handleResponse = (data) => {
     if (data.success) {
       setToken(data.token);
+      const parsedData = parseData(data.guest);
       setDialogProps({
         ...dialogProps,
         title: "RSVP for Liam and Leah's wedding",
+        titleProps: {
+          sx: {
+            textAlign: 'center',
+            fontSize: '2rem',
+            fontWeight: 700,
+            lineHeight: '1',
+            fontFamily: 'Tangerine, sans-serif',
+          },
+        },
         open: true,
         fullWidth: true,
         maxWidth: 'lg',
-        content: <RsvpForm data={data.guest} handleClose={handleDialogClose} />,
+        onClose: () => {},
+        content: <RsvpForm data={parsedData} handleClose={handleDialogClose} />,
       });
     }
     setButtonDisabled(false);

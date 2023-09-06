@@ -5,7 +5,7 @@ import {
   FormikCheckbox,
   ButtonGroup,
 } from '../';
-import { Button, Box, FormLabel } from '@mui/material';
+import { Button, Box, FormLabel, Grid, Divider } from '@mui/material';
 import { codeGenerator } from '../../../utils/utils';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
@@ -26,6 +26,7 @@ const schema = yup.object({
 });
 
 const GuestForm = ({ data, apiCall, submitText }) => {
+  console.log('data', data);
   const router = useRouter();
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -49,7 +50,7 @@ const GuestForm = ({ data, apiCall, submitText }) => {
       {({ setFieldValue, ...rest }) => {
         return (
           <Form>
-            <Box mt={3} display='flex' flexDirection={'column'} gap={3}>
+            <Box my={3} display='flex' flexDirection={'column'} gap={3}>
               <FormField>
                 <FormikTextField name='name' label='Name' type='text' />
               </FormField>
@@ -74,7 +75,7 @@ const GuestForm = ({ data, apiCall, submitText }) => {
                       handleGenerateCode('rsvpCode', setFieldValue)
                     }
                     variant='contained'
-                    sx={{ whiteSpace: 'nowrap', py: 2 }}
+                    sx={{ whiteSpace: 'nowrap', py: 2, minWidth: '120px' }}
                   >
                     Generate Code
                   </Button>
@@ -102,10 +103,17 @@ const GuestForm = ({ data, apiCall, submitText }) => {
                   Song Suggestion
                 </FormLabel>
 
-                <Box display='flex' gap={2}>
-                  <FormikTextField name='songRec.title' label='Title' />
-                  <FormikTextField name='songRec.artist' label='Group/Artist' />
-                </Box>
+                <Grid container spacing={1}>
+                  <Grid item xs={12} sm={6}>
+                    <FormikTextField name='songRec.title' label='Title' />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <FormikTextField
+                      name='songRec.artist'
+                      label='Group/Artist'
+                    />
+                  </Grid>
+                </Grid>
               </FormField>
 
               <FormField>

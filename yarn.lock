@@ -196,6 +196,21 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.1.1.tgz#1a5b1959a528e374e8037c4396c3e825d6cf4a83"
   integrity sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==
 
+"@fontsource/amatic-sc@^5.0.11":
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/amatic-sc/-/amatic-sc-5.0.11.tgz#0916cb0cbae348fc1a0b88066545cf51004f25cc"
+  integrity sha512-QmQ+vFFOgR2i8i4ZmhEKAbljidVkK6X1VqJm/GvmwXMTFfVjoZXlty5nGcwLR0MSv216QQySHH6+SvNRQ2HVcg==
+
+"@fontsource/roboto@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.8.tgz#613b477a56f21b5705db1a67e995c033ef317f76"
+  integrity sha512-XxPltXs5R31D6UZeLIV1td3wTXU3jzd3f2DLsXI8tytMGBkIsGcc9sIyiupRtA8y73HAhuSCeweOoBqf6DbWCA==
+
+"@fontsource/tangerine@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/tangerine/-/tangerine-5.0.8.tgz#11cec40e154154c49c3c4c570cd72795e0ef5fc6"
+  integrity sha512-ll5TMVbgwTMODgohmAfxaJqZWe/AMmRjicxlPXzTJuFVeI6ieL3aeiYQxTfBAFHor8Kd9i56kB/X9NbNnqk4/Q==
+
 "@material-ui/lab@^4.0.0-alpha.61":
   version "4.0.0-alpha.61"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.61.tgz#9bf8eb389c0c26c15e40933cc114d4ad85e3d978"

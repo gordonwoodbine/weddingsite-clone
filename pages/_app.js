@@ -4,10 +4,18 @@ import { CacheProvider } from '@emotion/react';
 import Layout from '../components/Layout';
 import createEmotionCache from '../utils/createEmotionCache';
 import '../styles/global.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import '@fontsource/amatic-sc/400.css';
+import '@fontsource/amatic-sc/700.css';
+import '@fontsource/tangerine/400.css';
+import '@fontsource/tangerine/700.css';
 
 const clientSideEmotionCache = createEmotionCache();
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: {
       main: '#8C4646',

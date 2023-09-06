@@ -7,10 +7,10 @@ import {
 } from '@mui/material';
 
 const Dialog = ({ onConfirm, dialogActions, ...props }) => {
-  const { title, content, ...dialogProps } = props;
+  const { title, content, titleProps, ...dialogProps } = props;
   return (
     <MDialog {...dialogProps}>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle {...titleProps}>{title}</DialogTitle>
       {content ? <DialogContent>{content}</DialogContent> : null}
       {dialogActions ? <DialogActions>{dialogActions}</DialogActions> : null}
     </MDialog>
