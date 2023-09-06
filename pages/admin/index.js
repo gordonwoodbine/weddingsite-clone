@@ -5,6 +5,7 @@ import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
 
 import Dialog from '../../components/Dialog/Dialog';
+import DialogActions from '../../components/Dialog/DialogActions';
 import DataTable from '../../components/DataTable';
 import { getColumnData } from './columnData';
 import { fetcher } from '../../utils/utils';
@@ -43,7 +44,14 @@ const Admin = () => {
       title: 'Are you sure you want to delete this user?',
       content: `This will permanently delete ${row.name}. Are you sure you wish to continue?`,
       onClose: handleDialogClose,
-      onConfirm: () => deleteGuest(row.id),
+      dialogActions: (
+        <DialogActions
+          close={handleDialogClose}
+          declineText={'No'}
+          confirm={() => deleteGuest(row.id)}
+          confirmText={'Yes'}
+        />
+      ),
     });
   };
 

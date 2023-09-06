@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import Dialog from '../components/Dialog';
+import RsvpForm from '../components/Form/RsvpForm/RsvpForm';
+import DialogActions from '../components/Dialog/DialogActions';
 
 const RSVP = () => {
   const [value, setValue] = useState('');
@@ -39,14 +41,15 @@ const RSVP = () => {
   };
 
   const handleResponse = (data) => {
-    console.log('data', data);
     if (data.success) {
-      console.log('success!');
       setToken(data.token);
       setDialogProps({
         ...dialogProps,
-        title: 'hello to you',
+        title: "RSVP for Liam and Leah's wedding",
         open: true,
+        fullWidth: true,
+        maxWidth: 'lg',
+        content: <RsvpForm data={data.guest} handleClose={handleDialogClose} />,
       });
     }
     setButtonDisabled(false);

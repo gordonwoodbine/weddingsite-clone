@@ -1,21 +1,16 @@
 import { Formik, Form } from 'formik';
-import { FormikTextField, FormikSelect, FormikCheckbox } from '../';
-import { Button, Box, FormControl, FormLabel, FormGroup } from '@mui/material';
+import {
+  FormikTextField,
+  FormikSelect,
+  FormikCheckbox,
+  ButtonGroup,
+} from '../';
+import { Button, Box, FormLabel } from '@mui/material';
 import { codeGenerator } from '../../../utils/utils';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
 
 const FormField = ({ children }) => <Box>{children}</Box>;
-
-const ButtonGroup = ({ children }) => (
-  <Box display='flex' justifyContent={'flex-end'}>
-    {children.map((child, i) => (
-      <Box mr={i === children.length - 1 ? 0 : 1} key={i}>
-        {child}
-      </Box>
-    ))}
-  </Box>
-);
 
 const inviteOptions = {
   day: 'All Day',
@@ -52,7 +47,6 @@ const GuestForm = ({ data, apiCall, submitText }) => {
       onSubmit={handleSubmit}
     >
       {({ setFieldValue, ...rest }) => {
-        console.log(rest);
         return (
           <Form>
             <Box mt={3} display='flex' flexDirection={'column'} gap={3}>
