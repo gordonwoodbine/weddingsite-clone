@@ -38,6 +38,9 @@ const GuestForm = ({ data, apiCall, submitText }) => {
     setSubmitting(false);
   };
 
+  // TODO - cancel click function that warns when form is dirty
+  const handleCancel = (dirty) => {};
+
   const handleGenerateCode = (name, setFieldValue) => {
     const code = codeGenerator();
     setFieldValue(name, code);
@@ -48,7 +51,8 @@ const GuestForm = ({ data, apiCall, submitText }) => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      {({ setFieldValue }) => {
+      {({ setFieldValue, ...rest }) => {
+        console.log(rest);
         return (
           <Form>
             <Box mt={3} display='flex' flexDirection={'column'} gap={3}>

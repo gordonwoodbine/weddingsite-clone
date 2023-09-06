@@ -7,7 +7,7 @@ import {
   Button,
 } from '@mui/material';
 
-const Dialog = (props) => {
+const Dialog = ({ onConfirm, ...props }) => {
   const { title, content, ...dialogProps } = props;
   return (
     <MDialog {...dialogProps}>
