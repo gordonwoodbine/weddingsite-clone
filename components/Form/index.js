@@ -1,3 +1,5 @@
-import Form from './Form';
+import FormikTextField from './TextField/TextField';
+import FormikSelect from './Select/Select';
+import FormikCheckbox from './Checkbox/Checkbox';
 
-export default Form;
+export { FormikTextField, FormikSelect, FormikCheckbox };

@@ -22,7 +22,12 @@ const AddGuest = () => {
     inviteType: '',
     rsvpCode: '',
     isAttending: false,
+    hasRsvpd: false,
     dietryReqs: '',
+    songRec: {
+      title: '',
+      artist: '',
+    },
   };
 
   const schema = yup.object({
@@ -30,10 +35,18 @@ const AddGuest = () => {
     inviteType: yup
       .string()
       .required('Please select an invite type for this guest'),
+    rsvpCode: yup
+      .string()
+      .required('Please create an RSVP code for this guest'),
   });
 
   return (
-    <GuestForm data={guest} schema={schema} />
+    <GuestForm
+      data={guest}
+      schema={schema}
+      apiCall={createGuest}
+      submitText='Add New Guest'
+    />
     // <Form
     //   formId='add-guest-form'
     //   userData={guest}

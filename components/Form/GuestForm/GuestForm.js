@@ -1,10 +1,11 @@
 import { Formik, Form } from 'formik';
-import FormikTextField from '../TextField/TextField';
-import FormikSelect from '../Select/Select';
-import { Button, TextField, Box } from '@mui/material';
+import { FormikTextField, FormikSelect, FormikCheckbox } from '../';
+import { Button, Box, FormControl, FormLabel, FormGroup } from '@mui/material';
 import { codeGenerator } from '../../../utils/utils';
+import { useRouter } from 'next/router';
+import * as yup from 'yup';
 
-const FormField = ({ children }) => <Box mb={2}>{children}</Box>;
+const FormField = ({ children }) => <Box>{children}</Box>;
 
 const ButtonGroup = ({ children }) => (
   <Box display='flex' justifyContent={'flex-end'}>
@@ -21,9 +22,19 @@ const inviteOptions = {
   eve: 'Evening Event',
 };
 
-const GuestForm = ({ data, schema }) => {
+const schema = yup.object({
+  name: yup.string().required('Name is required'),
+  inviteType: yup
+    .string()
+    .required('Please select an invite type for this guest'),
+  rsvpCode: yup.string().required('Please create an RSVP code for this guest'),
+});
+
+const GuestForm = ({ data, apiCall, submitText }) => {
+  const router = useRouter();
+
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
+    apiCall(values);
     setSubmitting(false);
   };
 
@@ -40,7 +51,7 @@ const GuestForm = ({ data, schema }) => {
       {({ setFieldValue }) => {
         return (
           <Form>
-            <Box mt={3} display='flex' flexDirection={'column'}>
+            <Box mt={3} display='flex' flexDirection={'column'} gap={3}>
               <FormField>
                 <FormikTextField name='name' label='Name' type='text' />
               </FormField>
@@ -54,7 +65,7 @@ const GuestForm = ({ data, schema }) => {
               </FormField>
 
               <FormField>
-                <Box display='flex' gap={2}>
+                <Box display='flex' gap={2} alignItems='flex-start'>
                   <FormikTextField
                     name='rsvpCode'
                     label='RSVP Code'
@@ -65,7 +76,7 @@ const GuestForm = ({ data, schema }) => {
                       handleGenerateCode('rsvpCode', setFieldValue)
                     }
                     variant='contained'
-                    sx={{ whiteSpace: 'nowrap' }}
+                    sx={{ whiteSpace: 'nowrap', py: 2 }}
                   >
                     Generate Code
                   </Button>
@@ -73,10 +84,39 @@ const GuestForm = ({ data, schema }) => {
               </FormField>
 
               <FormField>
+                <Box display='flex' gap={2}>
+                  <FormikCheckbox name='isAttending' label='Is Attending?' />
+                  <FormikCheckbox name='hasRsvpd' label="Has RSVP'd?" />
+                </Box>
+              </FormField>
+
+              <FormField>
+                <FormikTextField
+                  name='dietryReqs'
+                  label='Dietry Requirements'
+                  multiline
+                  rows={4}
+                />
+              </FormField>
+
+              <FormField>
+                <FormLabel sx={{ marginBottom: 2 }} component='legend'>
+                  Song Suggestion
+                </FormLabel>
+
+                <Box display='flex' gap={2}>
+                  <FormikTextField name='songRec.title' label='Title' />
+                  <FormikTextField name='songRec.artist' label='Group/Artist' />
+                </Box>
+              </FormField>
+
+              <FormField>
                 <ButtonGroup>
-                  <Button variant='outlined'>Cancel</Button>
+                  <Button variant='outlined' onClick={() => router.back()}>
+                    Cancel
+                  </Button>
                   <Button variant='contained' type='submit'>
-                    Submit
+                    {submitText}
                   </Button>
                 </ButtonGroup>
               </FormField>
