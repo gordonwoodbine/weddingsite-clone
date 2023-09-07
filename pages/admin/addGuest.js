@@ -22,6 +22,7 @@ const AddGuest = () => {
     isAttending: false,
     hasRsvpd: false,
     dietryReqs: '',
+    additionalGuests: [],
     songRec: {
       title: '',
       artist: '',

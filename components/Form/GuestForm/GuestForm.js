@@ -1,14 +1,26 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, FieldArray } from 'formik';
 import {
   FormikTextField,
   FormikSelect,
   FormikCheckbox,
   ButtonGroup,
 } from '../';
-import { Button, Box, FormLabel, Grid, Divider } from '@mui/material';
+import {
+  Button,
+  Box,
+  FormLabel,
+  Grid,
+  TextField,
+  IconButton,
+  Divider,
+  Stack,
+} from '@mui/material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { codeGenerator } from '../../../utils/utils';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
+import { useEffect, useState } from 'react';
 
 const FormField = ({ children }) => <Box>{children}</Box>;
 
@@ -28,6 +40,7 @@ const schema = yup.object({
 const GuestForm = ({ data, apiCall, submitText }) => {
   console.log('data', data);
   const router = useRouter();
+  const [additionalGuest, setAdditionalGuest] = useState('');
 
   const handleSubmit = (values, { setSubmitting }) => {
     apiCall(values);
@@ -41,13 +54,22 @@ const GuestForm = ({ data, apiCall, submitText }) => {
     const code = codeGenerator();
     setFieldValue(name, code);
   };
+
+  const handleAddExtraGuest = (arrayHelpers) => {
+    if (!additionalGuest) return;
+
+    arrayHelpers.push({ name: additionalGuest, isAttending: false });
+    setAdditionalGuest('');
+  };
+
   return (
     <Formik
       initialValues={data}
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      {({ setFieldValue, ...rest }) => {
+      {({ setFieldValue, values, ...rest }) => {
+        console.log('values', values);
         return (
           <Form>
             <Box my={3} display='flex' flexDirection={'column'} gap={3}>
@@ -115,6 +137,145 @@ const GuestForm = ({ data, apiCall, submitText }) => {
                   </Grid>
                 </Grid>
               </FormField>
+
+              <Divider />
+
+              <FieldArray
+                name='additionalGuests'
+                render={(arrayHelpers) => (
+                  <>
+                    <Stack spacing={1}>
+                      {values.additionalGuests.map((guest, index) => (
+                        <FormField key={index}>
+                          <Box
+                            gap={2}
+                            sx={{
+                              display: 'flex',
+                              width: '100%',
+                              alignItems: 'center',
+                              padding: 1,
+                              border: '1px solid #ddd',
+                              borderRadius: 1,
+                              '& hr': {
+                                mx: 0.5,
+                              },
+                            }}
+                          >
+                            <FormikTextField
+                              name={`additionalGuests.${index}.name`}
+                              sx={{ flex: 1 }}
+                            />
+                            <Divider
+                              orientation='vertical'
+                              variant='middle'
+                              flexItem
+                            />
+                            <FormikCheckbox
+                              name={`additionalGuests.${index}.isAttending`}
+                              label='Is Attending?'
+                              // sx={{ flex: 1 }}
+                            />
+                            <Divider
+                              orientation='vertical'
+                              variant='middle'
+                              flexItem
+                            />
+                            <IconButton
+                              onClick={() => arrayHelpers.remove(index)}
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Box>
+                        </FormField>
+                      ))}
+                    </Stack>
+                    <FormField>
+                      <Box display='flex' gap={2} alignItems={'center'}>
+                        <TextField
+                          variant='outlined'
+                          fullWidth
+                          value={additionalGuest}
+                          onChange={(e) => setAdditionalGuest(e.target.value)}
+                          label='Add Additional Invitee'
+                        />
+                        <Button
+                          variant='contained'
+                          sx={{ py: 2, minWidth: '120px' }}
+                          onClick={() => handleAddExtraGuest(arrayHelpers)}
+                        >
+                          Add
+                        </Button>
+                      </Box>
+                    </FormField>
+                  </>
+                )}
+              />
+
+              {/* {values.additionalGuests.length ? (
+                <Stack spacing={1}>
+                  {values.additionalGuests.map((guest, i) => (
+                    <FormField key={guest.name}>
+                      <Box
+                        gap={2}
+                        sx={{
+                          display: 'flex',
+                          width: '100%',
+                          alignItems: 'center',
+                          padding: 1,
+                          border: '1px solid #ddd',
+                          borderRadius: 1,
+                          '& hr': {
+                            mx: 0.5,
+                          },
+                        }}
+                      >
+                        <TextField
+                          value={guest.name}
+                          disabled
+                          sx={{ flex: 1 }}
+                        />
+                        <Divider
+                          orientation='vertical'
+                          variant='middle'
+                          flexItem
+                        />
+                        <FormikCheckbox
+                          name={`additionalGuests[${i}].isAttending`}
+                          label='Is Attending?'
+                          // sx={{ flex: 1 }}
+                        />
+                        <Divider
+                          orientation='vertical'
+                          variant='middle'
+                          flexItem
+                        />
+                        <IconButton>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Box>
+                    </FormField>
+                  ))}
+                </Stack>
+              ) : null}
+
+              <FormField>
+                <Box display='flex' gap={2} alignItems={'center'}>
+                  <TextField
+                    variant='outlined'
+                    fullWidth
+                    value={additionalGuest}
+                    onChange={(e) => setAdditionalGuest(e.target.value)}
+                    label='Add Additional Invitee'
+                  />
+                  <Button
+                    variant='contained'
+                    sx={{ py: 2, minWidth: '120px' }}
+                    onClick={() => handleAddExtraGuest(setFieldValue, values)}
+                  >
+                    Add
+                  </Button>
+                </Box>
+              </FormField> */}
 
               <FormField>
                 <ButtonGroup>

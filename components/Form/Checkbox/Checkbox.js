@@ -22,7 +22,11 @@ const FormikCheckbox = ({ name, label, ...rest }) => {
   return (
     <FormControl>
       <FormGroup>
-        <FormControlLabel control={<Checkbox {...config} />} label={label} />
+        <FormControlLabel
+          sx={{ whiteSpace: 'nowrap' }}
+          control={<Checkbox {...config} />}
+          label={label}
+        />
       </FormGroup>
     </FormControl>
   );
