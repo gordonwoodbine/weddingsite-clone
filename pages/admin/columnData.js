@@ -5,6 +5,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, IconButton, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
 
+const inviteOptions = {
+  day: 'All Day',
+  eve: 'Evening Only',
+};
+
 export const getColumnData = (basePath, deleteCallback) => {
   const router = useRouter();
   const theme = useTheme();
@@ -20,6 +25,7 @@ export const getColumnData = (basePath, deleteCallback) => {
       headerName: 'Invite Type',
       width: 200,
       flex: 1,
+      valueGetter: (params) => inviteOptions[params.row.inviteType],
     },
     {
       field: 'hasRsvpd',
