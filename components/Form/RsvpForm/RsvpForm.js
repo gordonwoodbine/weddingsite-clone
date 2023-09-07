@@ -1,16 +1,18 @@
 import {
   Typography,
   Button,
-  Paper,
+  Paper as MPaper,
   Box,
   Container,
   FormControl,
   FormLabel,
 } from '@mui/material';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FieldArray } from 'formik';
 import * as yup from 'yup';
 
 import { FormikRadioGroup, ButtonGroup, FormikTextField } from '../';
+import Song from '../Song';
+import AdditionalGuestsLists from '../AdditionalGuests/AdditionalGuestsList';
 
 const options = [
   {
@@ -23,15 +25,20 @@ const options = [
   },
 ];
 
+const Paper = ({ children }) => (
+  <MPaper elevation={2} sx={{ padding: 2 }}>
+    {children}
+  </MPaper>
+);
+
 const RsvpForm = ({ data, apiCall, handleClose }) => {
-  console.log('data', data);
   const handleSubmit = (values, actions) => {
     console.log('values', values);
   };
 
   return (
     <Formik initialValues={data} onSubmit={handleSubmit}>
-      {(actions) => (
+      {({ values }) => (
         <Form>
           <Container maxWidth='md'>
             <Box display='flex' flexDirection='column' gap={3}>
@@ -40,11 +47,11 @@ const RsvpForm = ({ data, apiCall, handleClose }) => {
                   We hope you can make it and we appreciate your prompt reply
                 </Typography>
               </Box>
-              <Paper elevation={2} sx={{ padding: 2 }}>
+              <Paper>
                 <FormikRadioGroup name='isAttending' options={options} />
               </Paper>
               <>
-                <Paper elevation={2} sx={{ padding: 2 }}>
+                <Paper>
                   <FormControl sx={{ width: '100%' }}>
                     <FormLabel
                       sx={{
@@ -62,6 +69,28 @@ const RsvpForm = ({ data, apiCall, handleClose }) => {
                   </FormControl>
                 </Paper>
               </>
+
+              <Paper>
+                <Song />
+              </Paper>
+
+              <Paper>
+                <FormLabel>
+                  Your invitation also includes the following people. Please can
+                  you indicate if they will be attending?
+                </FormLabel>
+                <FieldArray
+                  name='additionalGuests'
+                  render={(arrayHelpers) => (
+                    <AdditionalGuestsLists
+                      values={values}
+                      arrayHelpers={arrayHelpers}
+                      editingDisabled={true}
+                    />
+                  )}
+                />
+              </Paper>
+
               <ButtonGroup>
                 <Button variant='outlined' onClick={handleClose}>
                   Cancel
