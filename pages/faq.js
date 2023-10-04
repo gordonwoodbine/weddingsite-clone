@@ -59,6 +59,12 @@ const questions = [
   // },
 ];
 
+const styles = {
+  title: {
+    fontWeight: 'bold',
+  },
+};
+
 const Faq = () => {
   const [expanded, setExpanded] = useState(false);
 
@@ -80,7 +86,7 @@ const Faq = () => {
             aria-controls='panel1a-content'
             id='panel1a-header'
           >
-            <Typography>{e.question}</Typography>
+            <Typography style={styles.title}>{e.question}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>{e.answer}</Typography>

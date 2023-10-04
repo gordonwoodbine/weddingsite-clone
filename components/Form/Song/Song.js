@@ -5,7 +5,10 @@ const FormField = ({ children }) => <Box>{children}</Box>;
 
 const Song = () => (
   <FormField>
-    <FormLabel sx={{ marginBottom: 2 }} component='legend'>
+    <FormLabel
+      sx={{ marginBottom: '1rem', fontWeight: 'bolder' }}
+      component='legend'
+    >
       Song Suggestion
     </FormLabel>
 

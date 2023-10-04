@@ -17,7 +17,7 @@ const FormikRadioGroup = ({ name, options, ...rest }) => {
 
   return (
     <FormControl>
-      <FormLabel sx={{ marginBottom: '1rem', borderBottom: '1px solid #ddd' }}>
+      <FormLabel sx={{ marginBottom: '1rem', fontWeight: 'bolder' }}>
         Will you be celebrating with us?
       </FormLabel>
       <RadioGroup {...config}>

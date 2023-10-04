@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import Dialog from '../components/Dialog';
 import RsvpForm from '../components/Form/RsvpForm/RsvpForm';
 import DialogActions from '../components/Dialog/DialogActions';
@@ -7,7 +7,6 @@ import DialogActions from '../components/Dialog/DialogActions';
 const RSVP = () => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
-  const [token, setToken] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const contentType = 'application/json';
 
@@ -22,6 +21,16 @@ const RSVP = () => {
     open: false,
     onClose: handleDialogClose,
   });
+
+  const onSuccessCallback = () => {
+    setDialogProps({
+      open: true,
+      title: 'Thank you for your response',
+      content: <Typography>Ta very much like</Typography>,
+      onClose: handleDialogClose,
+      dialogActions: <Button onClick={handleDialogClose}>Close</Button>,
+    });
+  };
 
   const validateCode = async (val) => {
     try {
@@ -40,15 +49,15 @@ const RSVP = () => {
     }
   };
 
-  const parseData = (data) => ({
+  const parseData = (data, token) => ({
     ...data,
+    token,
     isAttending: true,
   });
 
   const handleResponse = (data) => {
     if (data.success) {
-      setToken(data.token);
-      const parsedData = parseData(data.guest);
+      const parsedData = parseData(data.guest, data.token);
       setDialogProps({
         ...dialogProps,
         title: "RSVP for Liam and Leah's wedding",
@@ -65,7 +74,13 @@ const RSVP = () => {
         fullWidth: true,
         maxWidth: 'lg',
         onClose: () => {},
-        content: <RsvpForm data={parsedData} handleClose={handleDialogClose} />,
+        content: (
+          <RsvpForm
+            data={parsedData}
+            handleClose={handleDialogClose}
+            onSuccessCallback={onSuccessCallback}
+          />
+        ),
       });
     }
     setButtonDisabled(false);
