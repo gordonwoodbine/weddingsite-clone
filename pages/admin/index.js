@@ -7,7 +7,7 @@ import axios from 'axios';
 import Dialog from '../../components/Dialog/Dialog';
 import DialogActions from '../../components/Dialog/DialogActions';
 import DataTable from '../../components/DataTable';
-import { getColumnData } from './columnData';
+import { getColumnData } from '../../components/columnData';
 import { fetcher } from '../../utils/utils';
 
 const Admin = () => {
