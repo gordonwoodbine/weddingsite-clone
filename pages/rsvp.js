@@ -34,7 +34,7 @@ const RSVP = () => {
 
   const validateCode = async (val) => {
     try {
-      const res = await fetch('http://localhost:3000/api/rsvp/validate', {
+      const res = await fetch('/api/rsvp/validate', {
         method: 'POST',
         headers: {
           Accept: contentType,
