@@ -1,68 +1,88 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Button } from '@mui/material';
-import dbConnect from '../../lib/dbConnect';
-import Guest from '../../lib/models/Guest';
+import { Box, Button, CircularProgress } from '@mui/material';
+import useSWR, { useSWRConfig } from 'swr';
+import axios from 'axios';
+
+import Dialog from '../../components/Dialog/Dialog';
+import DialogActions from '../../components/Dialog/DialogActions';
 import DataTable from '../../components/DataTable';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
+import { getColumnData } from './columnData';
+import { fetcher } from '../../utils/utils';
 
-const Admin = ({ guests }) => {
+const Admin = () => {
   const router = useRouter();
-  const basePath = 'http://localhost:3000';
+  const basePath = process.env.NEXT_PUBLIC_URL;
+  const { mutate } = useSWRConfig();
 
-  const columns = [
-    {
-      field: 'name',
-      headerName: 'Guest Name',
-      width: 200,
-    },
-    {
-      field: 'rsvpCode',
-      headerName: 'RSVP Code',
-    },
-    {
-      field: 'isAttending',
-      headerName: 'Is Attending?',
-      align: 'center',
-      sortable: false,
-      renderCell: ({ row }) =>
-        row.isAttending ? (
-          <CheckCircleIcon sx={{ color: 'green' }} />
-        ) : (
-          <CancelIcon sx={{ color: 'crimson' }} />
-        ),
-    },
-  ];
-
-  return (
-    <Box mt={3}>
-      <Box display={'flex'} justifyContent={'flex-end'}>
-        <Button
-          variant='contained'
-          onClick={() => router.push(`${basePath}/admin/addGuest/`)}
-        >
-          Add New Guest
-        </Button>
-      </Box>
-      <Box mt={2}>
-        <DataTable rows={guests} columns={columns} />
-      </Box>
-    </Box>
-  );
-};
-
-export async function getServerSideProps() {
-  await dbConnect();
-
-  const res = await Guest.find({});
-  const guests = res.map((doc) => {
-    const guest = doc.toObject();
-    guest._id = guest._id.toString();
-    guest.id = guest._id;
-    return guest;
+  const [dialogProps, setDialogProps] = useState({
+    open: false,
+    title: '',
   });
 
-  return { props: { guests } };
-}
+  const handleDialogClose = () =>
+    setDialogProps({
+      ...dialogProps,
+      open: false,
+    });
+
+  const { data, error, isLoading } = useSWR('api/guests', fetcher);
+
+  const deleteGuest = (id) => {
+    axios
+      .delete(`/api/guests/${id}`)
+      .then((res) => {
+        mutate('api/guests');
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteCallback = (row) => {
+    setDialogProps({
+      ...dialogProps,
+      open: true,
+      title: 'Are you sure you want to delete this user?',
+      content: `This will permanently delete ${row.name}. Are you sure you wish to continue?`,
+      onClose: handleDialogClose,
+      dialogActions: (
+        <DialogActions
+          close={handleDialogClose}
+          declineText={'No'}
+          confirm={() => deleteGuest(row.id)}
+          confirmText={'Yes'}
+        />
+      ),
+    });
+  };
+
+  const columns = getColumnData(basePath, deleteCallback);
+
+  return (
+    <>
+      <Box mt={3}>
+        {data ? (
+          <>
+            <Box display={'flex'} justifyContent={'flex-end'}>
+              <Button
+                variant='contained'
+                onClick={() => router.push(`${basePath}/admin/addGuest/`)}
+              >
+                Add New Guest
+              </Button>
+            </Box>
+            <Box mt={2}>
+              <DataTable rows={data} columns={columns} />
+            </Box>
+          </>
+        ) : isLoading ? (
+          <CircularProgress />
+        ) : error ? (
+          <div>Error!</div>
+        ) : null}
+      </Box>
+      <Dialog {...dialogProps} />
+    </>
+  );
+};
 
 export default Admin;

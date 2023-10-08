@@ -6,6 +6,7 @@ import AdminIcon from '@mui/icons-material/AdminPanelSettings';
 import { useRouter } from 'next/router';
 import { routes } from '../../routes/routes';
 import MobileNav from '../MobileNav';
+import Link from 'next/link';
 
 const Header = (props) => {
   const { data: session } = useSession();
@@ -16,13 +17,23 @@ const Header = (props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleClick = (route) => {
+    if (router.pathname === route.path) return;
+    router.push(route.path);
+  };
+
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', position: 'sticky', 'z-index': 1, top: 0 }}>
       <AppBar
         position='static'
         component='nav'
         elevation={0}
-        sx={{ backgroundColor: "background.primary", borderBottom: '1px solid #592828', alignItems: { xs: 'left', sm: 'center' } }}
+        sx={{
+          backgroundColor: 'background.primary',
+          borderBottom: '1px solid #914555',
+          alignItems: { xs: 'left', sm: 'center' },
+          height: '4rem',
+        }}
       >
         <Toolbar disableGutters>
           <IconButton
@@ -36,18 +47,16 @@ const Header = (props) => {
           </IconButton>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {routes.map((route) => (
-              <Button
-                startIcon={route.icon}
-                key={route.id}
-                onClick={() => router.push(route.path)}
-                sx={{
-                  color: 'primary.main',
-                  textDecoration:
-                    router.pathname === route.path ? 'underline' : 'none',
-                }}
-              >
-                {route.name}
-              </Button>
+              <Link href={route.path} scroll={false} key={route.id}>
+                <Button
+                  startIcon={route.icon}
+                  sx={{
+                    color: '#333',
+                  }}
+                >
+                  {route.name}
+                </Button>
+              </Link>
             ))}
             {session && (
               <Button

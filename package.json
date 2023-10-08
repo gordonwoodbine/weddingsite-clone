@@ -12,20 +12,34 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.10.6",
+    "@fontsource/amatic-sc": "^5.0.11",
+    "@fontsource/roboto": "^5.0.8",
+    "@fontsource/tangerine": "^5.0.8",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.12",
     "@mui/styles": "^5.13.2",
     "@mui/x-data-grid": "^6.5.0",
+    "@pqina/flip": "^1.7.7",
     "@rumess/react-flip-countdown": "^1.2.6",
+    "axios": "^1.5.0",
+    "formik": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.2",
     "next": "^13.2.4",
     "next-auth": "^4.22.1",
     "react": "^18.2.0",
     "react-countdown": "^2.3.5",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "swr": "^2.2.2",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "^2.7.6"
   }
 }

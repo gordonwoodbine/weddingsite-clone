@@ -2,34 +2,41 @@ import dbConnect from '../../../lib/dbConnect';
 import Guest from '../../../lib/models/Guest';
 
 export default async function handler(req, res) {
-  const { method, body: data } = req;
-
+  const { method, query, body: data } = req;
+  const { id } = query;
   await dbConnect();
 
   switch (method) {
     case 'GET':
       try {
-        const guests = await Guest.find({});
-        res.status(200).json(guests);
+        const guest = await Guest.findById(id);
+        res.status(200).json(guest);
       } catch (err) {
         res.status(400).json({
           success: false,
-          message: 'Failed to fetch records',
+          message: err.message,
         });
       }
       break;
-    case 'POST':
+    case 'DELETE':
       try {
-        const guest = await Guest.create(data);
-        res.status(201).json({
-          success: true,
-          data: guest,
-        });
+        await Guest.deleteOne({ _id: id });
+        res.status(204).end();
       } catch (err) {
-        console.log(err);
         res.status(400).json({
           success: false,
-          message: 'Something went wrong saving the data to the database',
+          message: err.message,
+        });
+      }
+      break;
+    case 'PUT':
+      try {
+        const guest = await Guest.findOneAndUpdate({ _id: id }, data);
+        res.status(201).json(guest);
+      } catch (err) {
+        res.status(400).json({
+          success: false,
+          message: err.message,
         });
       }
       break;
